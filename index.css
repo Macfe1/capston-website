@@ -72,7 +72,6 @@ body {
 /* Navigation */
 nav {
     background: white;
-    /* #1E40AF con transparencia */
     backdrop-filter: blur(10px);
     border-bottom: 3px solid var(--orange);
     transition: all 0.3s ease;
@@ -111,7 +110,24 @@ nav {
     font-weight: 800;
     font-size: clamp(1rem, 2.8vw, 1.8rem) !important;
     white-space: nowrap;
+}
 
+/* Forzar menú desktop */
+#nav-desktop {
+    display: none;
+}
+
+@media (min-width: 768px) {
+    #nav-desktop {
+        display: flex !important;
+        align-items: center;
+        gap: 0.5rem;
+        margin-left: auto;
+    }
+
+    #nav-desktop.hidden {
+        display: flex !important;
+    }
 }
 
 /* Responsivo */
@@ -400,7 +416,7 @@ nav {
 }
 
 .block-one-solution {
-    padding-bottom: 8vh;
+    padding-bottom: 12vh;
 }
 
 /* Cards de Key Features con borde de color y animación */
@@ -481,6 +497,13 @@ nav {
 
 .impact-card {
     animation: fadeInUp .6s ease both;
+}
+
+@media (max-width: 768px) {
+    .block-one-solution {
+        padding-bottom: 5vh;
+        padding-top: 3vh;
+    }
 }
 
 

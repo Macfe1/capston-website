@@ -13,13 +13,6 @@ function showSection(sectionId) {
     setTimeout(() => {
         targetSection.classList.add('fade-in');
 
-        if (sectionId === 'hook') {
-            if (window.pepitoChart && typeof window.pepitoChart.destroy === 'function') {
-                window.pepitoChart.destroy();
-            }
-            initChart();
-        }
-
         // Add slide-in animation to specific elements
         const slideElements = targetSection.querySelectorAll('.slide-in');
         slideElements.forEach((el, index) => {
@@ -70,3 +63,34 @@ document.querySelectorAll('.btn-primary, .btn-secondary').forEach(button => {
 
 document.addEventListener('contextmenu', e => e.preventDefault());
 document.addEventListener('dragstart', e => e.preventDefault());
+
+//MOBILE  MENU
+// Abrir/cerrar menú móvil
+const menuBtn = document.getElementById('menuBtn');
+const mobileMenu = document.getElementById('mobileMenu');
+
+if (menuBtn && mobileMenu) {
+    menuBtn.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+        menuBtn.setAttribute('aria-expanded', mobileMenu.classList.contains('hidden') ? 'false' : 'true');
+    });
+
+    // Cerrar al elegir una opción
+    mobileMenu.querySelectorAll('button').forEach(b =>
+        b.addEventListener('click', () => mobileMenu.classList.add('hidden'))
+    );
+
+    // Cerrar si pasas a desktop
+    window.addEventListener('resize', () => {
+        if (window.matchMedia('(min-width: 768px)').matches) mobileMenu.classList.add('hidden');
+    });
+}
+
+// Ajusta --nav-offset para que las anclas no se oculten bajo el nav fijo
+function setNavOffset() {
+    const nav = document.querySelector('nav');
+    if (!nav) return;
+    document.documentElement.style.setProperty('--nav-offset', nav.offsetHeight + 'px');
+}
+window.addEventListener('load', setNavOffset);
+window.addEventListener('resize', setNavOffset);
