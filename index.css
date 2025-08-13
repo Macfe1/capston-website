@@ -395,6 +395,14 @@ nav {
     padding-top: var(--nav-offset);
 }
 
+#solution {
+    scroll-margin-top: var(--nav-offset);
+}
+
+.block-one-solution {
+    padding-bottom: 8vh;
+}
+
 /* Cards de Key Features con borde de color y animación */
 .key-feature-card {
     background: #fff;
