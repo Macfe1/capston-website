@@ -1,0 +1,624 @@
+:root {
+    --orange: #ff8422;
+    --blue: #0c2474;
+    --orange-gradient: linear-gradient(135deg, #fff7ed 0%, #fed7aa 100%);
+    --blue-gradient: linear-gradient(135deg, #1a2a5f 0%, #1E40AF 50%, #5c73f6 100%);
+    --nav-offset: 120px;
+}
+
+@media (max-width: 768px) {
+    :root {
+        --nav-offset: 100px;
+    }
+}
+
+@media (max-width: 480px) {
+    :root {
+        --nav-offset: 90px;
+    }
+}
+
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Smooth scroll */
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    line-height: 1.6;
+    scroll-behavior: smooth;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(-30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.fade-in {
+    animation: fadeIn 0.8s ease-out;
+}
+
+.slide-in {
+    animation: slideIn 0.6s ease-out;
+}
+
+/* Navigation */
+nav {
+    background: white;
+    /* #1E40AF con transparencia */
+    backdrop-filter: blur(10px);
+    border-bottom: 3px solid var(--orange);
+    transition: all 0.3s ease;
+}
+
+.nav-btn {
+    color: var(--blue);
+    padding: 8px 16px;
+    border-radius: 20px;
+    transition: all 0.3s ease;
+    font-weight: 600;
+    position: relative;
+    overflow: hidden;
+}
+
+.nav-btn:hover {
+    color: #ffffff;
+    background-color: var(--orange);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(255, 165, 0, 0.4);
+}
+
+.nav-btn.active {
+    color: var(--blue);
+    background-color: var(--orange);
+}
+
+.container-img {
+    width: 40%;
+    min-width: 180px;
+    /* Ancho mínimo para que quepa el contenido */
+}
+
+.capstone-text {
+    color: var(--blue);
+    font-weight: 800;
+    font-size: clamp(1rem, 2.8vw, 1.8rem) !important;
+    white-space: nowrap;
+
+}
+
+/* Responsivo */
+@media (max-width: 640px) {
+    .container-img {
+        width: 55%;
+        min-width: 160px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .container-img {
+        width: 33%;
+        min-width: 200px;
+    }
+}
+
+@media (min-width: 1280px) {
+    .container-img {
+        width: 31%;
+    }
+}
+
+/* Hook Section */
+.gradient-bg {
+    background: linear-gradient(135deg, #1a2a5f 0%, #1E40AF 50%, #5c73f6 100%);
+    position: relative;
+    overflow: hidden;
+    padding-top: 120px;
+}
+
+.gradient-bg::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="2" fill="rgba(255,255,255,0.1)"/><circle cx="80" cy="40" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="40" cy="80" r="1.5" fill="rgba(255,255,255,0.1)"/></svg>');
+    animation: float 20s infinite linear;
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(0px) rotate(0deg);
+    }
+
+    100% {
+        transform: translateY(-100px) rotate(360deg);
+    }
+}
+
+.hook-title {
+    /*text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);*/
+    background: linear-gradient(45deg, #ffffff, #f0f9ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Buttons */
+.btn-primary {
+    background: linear-gradient(45deg, #bd5908, #e99754);
+    color: white;
+    border: none;
+    padding: 12px 32px;
+    border-radius: 50px;
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(30, 64, 175, 0.4);
+}
+
+.btn-primary::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s;
+}
+
+.btn-primary:hover::before {
+    left: 100%;
+}
+
+.btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(30, 64, 175, 0.6);
+}
+
+.btn-secondary {
+    background: transparent;
+    color: var(--orange);
+    border: 2px solid var(--orange);
+    padding: 12px 32px;
+    border-radius: 50px;
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-secondary:hover {
+    background-color: var(--orange);
+    color: #ffffff;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(255, 165, 0, 0.4);
+}
+
+@media (max-width: 768px) {
+    .gradient-bg {
+        padding-top: 100px;
+    }
+}
+
+@media (max-width: 480px) {
+    .gradient-bg {
+        padding-top: 90px;
+    }
+}
+
+/*Each section*/
+.section {
+    scroll-margin-top: var(--nav-offset);
+    transition: all 0.5s ease-in-out;
+}
+
+
+/* ===== Problem Section ===== */
+.problem-bg {
+    background: linear-gradient(135deg, #c58908 0%, #f3bf84 50%, #ff8422 100%);
+    position: relative;
+    padding-top: var(--nav-offset);
+}
+
+.containter-title p {
+    color: rgba(131, 64, 9, 0.63);
+    font-weight: 600;
+}
+
+/*Spinner in problem card time waste*/
+.loading-spinner {
+    width: 40px;
+    height: 40px;
+    border: 4px solid rgba(255, 255, 255, 0.3);
+    border-top: 4px solid #ffffff;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/*Animated filter*/
+.filter-slider {
+    width: 40px;
+    height: 40px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 8px;
+}
+
+.slider-track {
+    width: 100%;
+    height: 3px;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 2px;
+    position: relative;
+}
+
+.slider-track::before,
+.slider-track::after {
+    content: '';
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    background: white;
+    border-radius: 50%;
+    top: -4px;
+    animation: slideFilter 2s ease-in-out infinite;
+}
+
+.slider-track::before {
+    left: 5px;
+}
+
+.slider-track::after {
+    right: 5px;
+    animation-delay: 1s;
+    animation-direction: reverse;
+}
+
+@keyframes slideFilter {
+
+    0%,
+    100% {
+        transform: translateX(0);
+    }
+
+    50% {
+        transform: translateX(15px);
+    }
+}
+
+.container-problem-card p {
+    color: white;
+}
+
+.problem-card {
+    background: rgba(119, 83, 15, 0.637);
+    border: 1px solid rgba(255, 170, 13, 0.911);
+    transition: all 0.4s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.problem-card:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 25px 50px rgba(221, 176, 92, 0.493);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .nav-btn {
+        padding: 6px 12px;
+        font-size: 14px;
+    }
+
+    .hook-title {
+        font-size: 2.5rem !important;
+    }
+
+    .btn-primary,
+    .btn-secondary {
+        padding: 10px 24px;
+        font-size: 16px;
+    }
+
+    .team-card,
+    .problem-card,
+    .impact-card {
+        margin-bottom: 1rem;
+    }
+}
+
+/* ===== Solution Section ===== */
+
+.solution-h2 {
+    color: var(--blue);
+}
+
+.img-solution {
+    background-color: var(--blue);
+}
+
+.key-features-h3 {
+    color: var(--blue);
+}
+
+.impact-h3 {
+    color: var(--blue);
+}
+
+.solution-bg {
+    background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 50%, #e0e7ff 100%);
+    padding-top: var(--nav-offset);
+}
+
+/* Cards de Key Features con borde de color y animación */
+.key-feature-card {
+    background: #fff;
+    /*border: 1px solid rgba(8, 19, 165, 0.2);*/
+    border: 1px solid rgba(8, 19, 165, 0.637);
+    border-radius: 1rem;
+    padding: 2rem;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+    transition: transform .3s ease, box-shadow .3s ease, opacity .3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.key-feature-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--blue-gradient);
+    /* igual al de .team-card */
+    opacity: 0;
+    transition: opacity .3s ease;
+    pointer-events: none;
+    /* no bloquea clics */
+    z-index: 0;
+    /* debajo del contenido */
+}
+
+.key-feature-card:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 25px 50px rgba(0, 47, 255, 0.3);
+    /* mismo “glow” cálido */
+}
+
+.key-feature-card:hover::before {
+    opacity: 1;
+    /* aparece el overlay */
+}
+
+/* Asegura que el contenido quede encima del overlay */
+.key-feature-card>* {
+    position: relative;
+    z-index: 1;
+}
+
+.key-feature-card:hover * {
+    color: white !important;
+}
+
+/* Cards de Impact */
+.impact-card-gradient {
+    background: white;
+    border-left: 4px solid var(--blue);
+    border-radius: 1rem;
+    padding: 2rem;
+    box-shadow: 0 15px 35px rgba(1, 7, 43, 0.1);
+    transition: all 0.3s ease;
+}
+
+.impact-card-gradient:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 25px 50px rgba(0, 47, 255, 0.3);
+}
+
+/* Animación de entrada suave */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(24px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.impact-card {
+    animation: fadeInUp .6s ease both;
+}
+
+
+/* Team Section */
+.team-bg {
+    background: linear-gradient(135deg, #0c2474 0%, #0f1a3d 50%, rgb(17, 35, 59) 100%);
+    position: relative;
+    padding-top: var(--nav-offset);
+}
+
+.team-bg::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><polygon points="50,10 60,35 85,35 65,55 75,80 50,65 25,80 35,55 15,35 40,35" fill="rgba(255,165,0,0.05)"/></svg>') repeat;
+    opacity: 0.1;
+}
+
+.team-card {
+    background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+    border: 1px solid rgba(255, 165, 0, 0.2);
+    transition: all 0.4s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.team-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, rgba(255, 165, 0, 0.1), rgba(30, 64, 175, 0.1));
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.team-card:hover::before {
+    opacity: 1;
+}
+
+.team-card:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 25px 50px rgba(255, 165, 0, 0.3);
+}
+
+.team-avatar {
+    background: linear-gradient(45deg, #FFA500, #1E40AF);
+    transition: all 0.3s ease;
+}
+
+.team-card:hover .team-avatar {
+    transform: scale(1.1) rotate(5deg);
+    box-shadow: 0 10px 20px rgba(255, 165, 0, 0.4);
+}
+
+.team-avatar {
+    background-size: 120%;
+    background-position: center 23%;
+    background-repeat: no-repeat;
+    border: 3px solid rgba(255, 255, 255, 0.2);
+}
+
+.team-avatar-juan {
+    background-size: 120%;
+    background-position: 60% 23%;
+    background-repeat: no-repeat;
+    border: 3px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .nav-btn {
+        padding: 6px 12px;
+        font-size: 14px;
+    }
+
+    .hook-title {
+        font-size: 2.5rem !important;
+    }
+
+    .btn-primary,
+    .btn-secondary {
+        padding: 10px 24px;
+        font-size: 16px;
+    }
+
+    .team-card,
+    .problem-card,
+    .impact-card {
+        margin-bottom: 1rem;
+    }
+}
+
+/* Loading Animation 
+.loading {
+    position: relative;
+    overflow: hidden;
+}
+
+.loading::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 165, 0, 0.3), transparent);
+    animation: loading 2s infinite;
+}
+
+@keyframes loading {
+    0% {
+        left: -100%;
+    }
+
+    100% {
+        left: 100%;
+    }
+}*/
+
+.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* Focus States for Accessibility */
+.nav-btn:focus,
+.btn-primary:focus,
+.btn-secondary:focus {
+    outline: 3px solid rgba(255, 165, 0, 0.6);
+    outline-offset: 2px;
+}
+
+/* High Contrast Mode Support */
+@media (prefers-contrast: high) {
+    .gradient-bg {
+        background: #1E40AF;
+    }
+
+    .nav-btn:hover {
+        background-color: #000000;
+        color: #ffffff;
+    }
+}

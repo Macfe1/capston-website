@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Capstone - SuperPay</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full shadow-lg z-50">
+        <div class="px-5 sm:px-6 2xl:px-5 py-6">
+            <div class="flex justify-between items-center">
+                <div class="container-img flex items-center gap-3 sm:gap-4 h-12">
+                    <img src="../Capston-img/superpay-logo-blue.png" alt="Superpay" class="h-7 w-auto sm:h-9 lg:h-10">
+                    <h1 class="capstone-text font-bold text-[clamp(1.5rem,2vw+0.5rem,2.75rem)]">Capstone</h1>
+                </div>
+                <div class="flex space-x-2">
+                    <button onclick="showSection('hook')" class="nav-btn">
+                        Intro
+                    </button>
+                    <button onclick="showSection('problem')" class="nav-btn">
+                        Problem
+                    </button>
+                    <button onclick="showSection('solution')" class="nav-btn">
+                        Solution
+                    </button>
+                    <button onclick="showSection('team')" class="nav-btn">
+                        Team
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hook Section -->
+    <section id="hook" class="section min-h-screen gradient-bg flex items-center justify-center text-white relative">
+        <div class="text-center max-w-4xl mx-auto px-6 fade-in relative z-10">
+            <h3 class="hook-title text-4xl md:text-6xl font-bold mb-8 leading-tight">
+                What possibilities open up when we compare numbers <br> in real time?
+            </h3>
+            <p class="text-lg md:text-xl mb-12 opacity-90 max-w-2xl mx-auto leading-relaxed">
+                When data is compared, analyzed, and filtered instantly, it transforms into actionable insights that
+                drive success.
+            </p>
+
+            <!-- Navigation Button - Centered at the bottom -->
+            <div class="text-center mt-8">
+                <button onclick="showSection('problem')" class="btn-primary">
+                    Discover How →
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Problem Section -->
+    <section id="problem" class="section problem-bg min-h-screen text-white flex items-center justify-center hidden relative">
+        <div class="max-w-6xl mx-auto px-6 py-20 relative z-10">
+            <div class="containter-title text-center mb-16 fade-in">
+                <h2 class="text-4xl md:text-5xl font-bold mb-6">The Problem</h2>
+                <p class="text-lg md:text-xl max-w-3xl mx-auto">
+                    SuperPay's clients need fast, reliable, and real-time access to their business data in order to
+                    make informed decisions, however they faced the following challenges:
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8 mb-16">
+                <div class="container-problem-card problem-card p-8 rounded-xl text-center">
+                    <div class="flex items-center justify-center mb-4">
+                        <div class="loading-spinner"></div>
+                        <h3 class="text-2xl font-bold mb-2 ml-4">Time Waste</h3>
+                    </div>
+                    <p class="text-neutral-50">
+                        Accessing real-time data often took longer than necessary, slowing down
+                        workflows and impacting the overall user experience.
+                    </p>
+                </div>
+
+                <div class="container-problem-card problem-card p-8 rounded-xl text-center">
+                    <div class="flex items-center justify-center mb-4">
+                        <div class="filter-slider">
+                            <div class="slider-track"></div>
+                            <div class="slider-handle"></div>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-2 ml-4">Filters</h3>
+                    </div>
+                    <p>
+                        Data filtering and customization options were limited, preventing clients
+                        from tailoring their views and reports to their specific needs.
+                    </p>
+                </div>
+            </div>
+
+            <div class="text-center fade-in">
+                <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4">
+                    <button onclick="showSection('solution')" class="btn-primary">
+                        See Our Solution →
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Solution Section -->
+    <section id="solution" class="section solution-bg flex items-center justify-center">
+        <div class="max-w-6xl mx-auto px-6 py-20">
+            <!-- Bloque 1: Our Solution (texto izq. + imagen der.) -->
+            <div class="grid md:grid-cols-2 py-20 gap-12 items-center">
+                <!-- Texto -->
+                <div class="space-y-4">
+                    <h2 class="solution-h2 text-4xl md:text-5xl font-bold">Our Solution</h2>
+                    <p class="text-lg md:text-xl text-gray-600 max-w-3xl">
+                        We designed and developed an interactive, real-time dashboard that allows SuperPay’s clients to
+                        view and analyze their key data in seconds.
+                    </p>
+                </div>
+                <!-- Imagen -->
+                <div class="w-full flex justify-center">
+                    <img src="../Capston-img/Dashboard-3.jpg" alt="Dashboard preview"
+                        class="w-full max-w-xl rounded-2xl shadow-xl">
+                </div>
+            </div>
+
+            <!-- Bloque 2: Key Features -->
+            <div class="mt-20">
+                <h3 class="key-features-h3 text-3xl md:text-4xl font-bold text-center mb-10">Key Features</h3>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <!-- 1) Dynamic Filters -->
+                    <div class="key-feature-card p-8 rounded-2xl shadow-lg h-full">
+                        <h3 class="text-2xl font-bold text-gray-800 mb-4">Dynamic Filters</h3>
+                        <p class="text-gray-600">
+                            Terminal, payment method, transaction status, and date range.
+                        </p>
+                    </div>
+
+                    <!-- 2) Clear Visualizations -->
+                    <div class="key-feature-card p-8 rounded-2xl shadow-lg h-full">
+                        <h3 class="text-2xl font-bold text-gray-800 mb-4">Clear Visualizations</h3>
+                        <ul class="text-gray-600 list-disc pl-5 space-y-1">
+                            <li>Pie charts showing distribution by status.</li>
+                            <li>Bar & line charts tracking daily amounts.</li>
+                            <li>Revenue flow indicators by status.</li>
+                        </ul>
+                    </div>
+
+                    <!-- 3) Responsive Design -->
+                    <div class="key-feature-card p-8 rounded-2xl shadow-lg h-full">
+                        <h3 class="text-2xl font-bold text-gray-800 mb-4">Responsive Design</h3>
+                        <p class="text-gray-600">
+                            Works seamlessly across desktop, tablet, and mobile.
+                        </p>
+                    </div>
+
+                    <!-- 4) Intuitive UI -->
+                    <div class="key-feature-card p-8 rounded-2xl shadow-lg h-full">
+                        <h3 class="text-2xl font-bold text-gray-800 mb-4">Intuitive UI</h3>
+                        <p class="text-gray-600">
+                            Simple to use, even for non-technical users.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bloque 3: Impact -->
+            <div class="mt-20">
+                <h3 class="impact-h3 text-3xl md:text-4xl font-bold text-center mb-10">Impact</h3>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <!-- Card 1 -->
+                    <div class="impact-card-gradient bg-white p-8 rounded-2xl h-full">
+                        <h3 class="text-2xl font-bold text-gray-800 mb-4">For SuperPay’s clients</h3>
+                        <ul class="text-gray-600 list-disc pl-5 space-y-1">
+                            <li>Understand business trends instantly.</li>
+                            <li>Identify issues quickly (e.g., high failure rates for a payment method).</li>
+                            <li>Make smarter business decisions based on real, up-to-the-minute data.</li>
+                        </ul>
+                    </div>
+
+                    <!-- Card 2 -->
+                    <div class="impact-card-gradient bg-white p-8 rounded-2xl h-full">
+                        <h3 class="text-2xl font-bold text-gray-800 mb-4">For SuperPay</h3>
+                        <ul class="text-gray-600 list-disc pl-5 space-y-1">
+                            <li>More satisfied, self-sufficient clients.</li>
+                            <li>A strong foundation for future back-office modules.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CTA -->
+            <div class="text-center mt-16">
+                <button onclick="showSection('team')" class="btn-primary">
+                    Meet Our Team →
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section id="team" class="section min-h-screen team-bg text-white flex items-center justify-center hidden relative">
+        <div class="max-w-6xl mx-auto px-6 py-20 relative z-10">
+            <div class="text-center mb-16 fade-in">
+                <h2 class="text-4xl md:text-5xl font-bold mb-6">Our Team</h2>
+                <p class="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto">
+                    We combined design and development efforts to deliver a dashboard that transforms complex data into
+                    clear, actionable insights, maximizing the value SuperPay provides to its clients.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8 mb-16">
+                <div class="team-card p-8 rounded-xl text-center">
+                    <div class="team-avatar w-24 h-24 rounded-full mx-auto mb-6"
+                        style="background-image: url('../Capston-img/Maria-Fernanda-Peña.jpg');">
+                    </div>
+                    <h3 class="text-2xl font-bold mb-2">Maria Fernanda Peña</h3>
+                    <p class="text-yellow-400 mb-4 font-semibold">Front-end</p>
+                    <p class="text-gray-300">Datos</p>
+                </div>
+
+                <div class="team-card p-8 rounded-xl text-center">
+                    <div class="team-avatar-juan w-24 h-24 rounded-full mx-auto mb-6"
+                        style="background-image: url('../Capston-img/Juan-Aramburo.jpeg');">
+                    </div>
+                    <h3 class="text-2xl font-bold mb-2">Juan Aramburo</h3>
+                    <p class="text-blue-400 mb-4 font-semibold">Front-end</p>
+                    <p class="text-gray-300">Datos</p>
+                </div>
+
+                <div class="team-card p-8 rounded-xl text-center">
+                    <div class="team-avatar w-24 h-24 rounded-full mx-auto mb-6"
+                        style="background-image: url('../Capston-img/Carlos-Suarez.jpeg');">
+                    </div>
+                    <h3 class="text-2xl font-bold mb-2">Carlos Suarez</h3>
+                    <p class="text-purple-400 mb-4 font-semibold">Front-end</p>
+                    <p class="text-gray-300">Datos</p>
+                </div>
+            </div>
+
+            <div class="text-center fade-in">
+                <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4">
+                    <button onclick="showSection('hook')" class="btn-secondary">
+                        Start Over
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/@lottiefiles/dotlottie-wc@0.6.2/dist/dotlottie-wc.js" type="module"></script>
+    <script src="./index.js" defer></script>
+</body>
+
+</html>
