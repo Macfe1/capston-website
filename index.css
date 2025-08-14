@@ -560,6 +560,11 @@ nav {
     box-shadow: 0 10px 20px rgba(255, 165, 0, 0.4);
 }
 
+.team-card:hover .team-avatar-juan {
+    transform: scale(1.1) rotate(5deg);
+    box-shadow: 0 10px 20px rgba(255, 165, 0, 0.4);
+}
+
 .team-avatar {
     background-size: 120%;
     background-position: center 23%;
@@ -568,6 +573,8 @@ nav {
 }
 
 .team-avatar-juan {
+    background: linear-gradient(45deg, #FFA500, #1E40AF);
+    transition: all 0.3s ease;
     background-size: 120%;
     background-position: 60% 23%;
     background-repeat: no-repeat;
