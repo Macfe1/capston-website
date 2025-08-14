@@ -390,22 +390,6 @@ nav {
 
 /* ===== Solution Section ===== */
 
-.solution-h2 {
-    color: var(--blue);
-}
-
-.img-solution {
-    background-color: var(--blue);
-}
-
-.key-features-h3 {
-    color: var(--blue);
-}
-
-.impact-h3 {
-    color: var(--blue);
-}
-
 .solution-bg {
     background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 50%, #e0e7ff 100%);
     padding-top: var(--nav-offset);
@@ -413,6 +397,17 @@ nav {
 
 #solution {
     scroll-margin-top: var(--nav-offset);
+}
+
+/*BLOCK 1*/
+.solution-h2 {
+    color: var(--blue);
+}
+
+/*BLOCK 2*/
+
+.key-features-h3 {
+    color: var(--blue);
 }
 
 .block-one-solution {
@@ -467,6 +462,12 @@ nav {
     color: white !important;
 }
 
+/*BLOCK 3*/
+
+.impact-h3 {
+    color: var(--blue);
+}
+
 /* Cards de Impact */
 .impact-card-gradient {
     background: white;
@@ -495,17 +496,12 @@ nav {
     }
 }
 
-.impact-card {
-    animation: fadeInUp .6s ease both;
-}
-
 @media (max-width: 768px) {
     .block-one-solution {
         padding-bottom: 5vh;
         padding-top: 3vh;
     }
 }
-
 
 /* Team Section */
 .team-bg {
