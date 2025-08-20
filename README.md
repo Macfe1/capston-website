@@ -4,6 +4,12 @@
 
 This repository contains a web-based presentation of the SuperPay dashboard project, built to showcase the main aspects of our solution in a visual and interactive format. Instead of using a slide deck, I developed this responsive web app to present the project in a more engaging and modern way.
 
+## How it looks:
+
+Open the following link https://macfe1.github.io/capston-website/
+
+![Capstone Website Preview](Capston-img/capstone.png)
+
 ## What This Presentation Shows
 
 The web illustrates the following key points:
