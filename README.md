@@ -41,6 +41,4 @@ capston-website/
 ## How to View the Presentation
 
 Open the following link
-```
-https://macfe1.github.io/capston-website/
-```
+(https://macfe1.github.io/capston-website/)
