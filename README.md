@@ -43,7 +43,3 @@ capston-website/
 ├── index.css         # Styling for layout and responsiveness
 └── Capston-img/      # Image assets used in the presentation
 ```
-
-## How to View the Presentation
-
-Open the following link https://macfe1.github.io/capston-website/
