@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Capstone - SuperPay</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full shadow-lg z-50">
+        <div class="max-w-6xl mx-auto px-6 py-4">
+            <div class="flex justify-between items-center">
+                <h1 class="capstone-text text-3xl font-bold">Capstone</h1>
+                <div class="flex space-x-2">
+                    <button onclick="showSection('hook')" class="nav-btn">
+                        Intro
+                    </button>
+                    <button onclick="showSection('problem')" class="nav-btn">
+                        Problem
+                    </button>
+                    <button onclick="showSection('solution')" class="nav-btn">
+                        Solution
+                    </button>
+                    <button onclick="showSection('team')" class="nav-btn">
+                        Team
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hook Section -->
+    <section id="hook" class="section min-h-screen gradient-bg flex items-center justify-center text-white relative">
+        <div class="text-center max-w-4xl mx-auto px-6 fade-in relative z-10">
+            <h3 class="hook-title text-4xl md:text-6xl font-bold mb-8 leading-tight">
+                What possibilities open up when we compare numbers <br> in real time?
+            </h3>
+            <p class="text-lg md:text-xl mb-12 opacity-90 max-w-2xl mx-auto leading-relaxed">
+                When data is compared, analyzed, and filtered instantly, it transforms into actionable insights that
+                drive success.
+            </p>
+
+            <!-- Chart Section -->
+            <div class="max-w-6xl mx-auto px-6 py-8 grid gap-10 md:grid-cols-2 items-center mb-12">
+                <!-- Columna izquierda: pregunta + saldo + respuesta -->
+                <div class="space-y-4">
+                    <h3 class="text-2xl md:text-3xl font-bold">
+                        ¿Puedo gastarme una hamburguesa hoy o no?
+                    </h3>
+
+                    <p class="text-gray-300">
+                        Saldo actual de Pepito: <span id="saldo-actual" class="font-semibold">—</span>
+                    </p>
+
+                    <div id="respuesta"
+                        class="inline-flex items-center rounded-full px-4 py-2 text-sm font-semibold ring-1 ring-white/15 bg-white/10">
+                        Calculando…
+                    </div>
+                </div>
+
+                <!-- Columna derecha: canvas para el chart -->
+                <div class="bg-white/5 rounded-2xl p-4">
+                    <canvas id="pepitoChart" height="240"></canvas>
+                </div>
+            </div>
+
+            <!-- Interactive Controls Section -->
+            <div class="max-w-6xl mx-auto px-6 py-8">
+                <!-- Controles principales -->
+                <div class="grid md:grid-cols-3 gap-6 mb-8">
+                    <!-- Saldo Inicial -->
+                    <div class="space-y-2">
+                        <label class="text-sm font-semibold text-gray-300">Saldo Inicial</label>
+                        <div class="flex gap-2">
+                            <input id="saldo-inicial-input" type="number" value="120000"
+                                class="flex-1 px-3 py-2 bg-white/10 border border-white/20 rounded-lg text-white placeholder-gray-400">
+                            <button onclick="actualizarSaldoInicial()"
+                                class="px-4 py-2 bg-blue-500 hover:bg-blue-600 rounded-lg text-white font-semibold">
+                                ✓
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Precio Hamburguesa -->
+                    <div class="space-y-2">
+                        <label class="text-sm font-semibold text-gray-300">Precio Hamburguesa</label>
+                        <div class="flex gap-2">
+                            <input id="precio-hamburguesa-input" type="number" value="25000"
+                                class="flex-1 px-3 py-2 bg-white/10 border border-white/20 rounded-lg text-white placeholder-gray-400">
+                            <button onclick="actualizarPrecioHamburguesa()"
+                                class="px-4 py-2 bg-orange-500 hover:bg-orange-600 rounded-lg text-white font-semibold">
+                                ✓
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Colchón -->
+                    <div class="space-y-2">
+                        <label class="text-sm font-semibold text-gray-300">Colchón de Seguridad</label>
+                        <div class="flex gap-2">
+                            <input id="colchon-input" type="number" value="50000"
+                                class="flex-1 px-3 py-2 bg-white/10 border border-white/20 rounded-lg text-white placeholder-gray-400">
+                            <button onclick="actualizarColchon()"
+                                class="px-4 py-2 bg-purple-500 hover:bg-purple-600 rounded-lg text-white font-semibold">
+                                ✓
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Agregar Gasto -->
+                <div class="bg-white/5 rounded-xl p-6 mb-6">
+                    <h4 class="text-xl font-bold text-white mb-4">Agregar Nuevo Gasto</h4>
+                    <div class="grid md:grid-cols-4 gap-4">
+                        <div class="space-y-2">
+                            <label class="text-sm font-semibold text-gray-300">Concepto</label>
+                            <input id="concepto-input" type="text" placeholder="Ej: Cerveza, Gasolina..."
+                                class="w-full px-3 py-2 bg-white/10 border border-white/20 rounded-lg text-white placeholder-gray-400">
+                        </div>
+
+                        <div class="space-y-2">
+                            <label class="text-sm font-semibold text-gray-300">Monto</label>
+                            <input id="monto-input" type="number" placeholder="30000"
+                                class="w-full px-3 py-2 bg-white/10 border border-white/20 rounded-lg text-white placeholder-gray-400">
+                        </div>
+
+                        <div class="space-y-2">
+                            <label class="text-sm font-semibold text-gray-300">Fecha</label>
+                            <input id="fecha-input" type="date"
+                                class="w-full px-3 py-2 bg-white/10 border border-white/20 rounded-lg text-white">
+                        </div>
+
+                        <div class="space-y-2">
+                            <label class="text-sm font-semibold text-gray-300">&nbsp;</label>
+                            <button onclick="agregarGasto()"
+                                class="w-full px-4 py-2 bg-green-500 hover:bg-green-600 rounded-lg text-white font-semibold">
+                                💰 Agregar Gasto
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Lista de Gastos -->
+                <div class="bg-white/5 rounded-xl p-6 mb-8">
+                    <h4 class="text-xl font-bold text-white mb-4">Historial de Gastos</h4>
+                    <div id="lista-gastos" class="space-y-2 max-h-60 overflow-y-auto">
+                        <!-- Se llena dinámicamente -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Navigation Button - Centered at the bottom -->
+            <div class="text-center mt-8">
+                <button onclick="showSection('problem')" class="btn-primary">
+                    Discover How →
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Establecer fecha de hoy por defecto
+        document.addEventListener('DOMContentLoaded', function () {
+            const fechaInput = document.getElementById('fecha-input');
+            if (fechaInput) {
+                const hoy = new Date().toISOString().split('T')[0];
+                fechaInput.value = hoy;
+            }
+        });
+    </script>
+
+    <!-- Problem Section 
+    <section id="problem" class="section min-h-screen hidden">-->
+    <section id="problem" class="section">
+        <div class="problem-bg">
+
+            <!-- BLOQUE 1: Título + texto + imagen (Pantalla completa) -->
+            <div class="problem-block max-w-6xl mx-auto px-6">
+                <div class="grid md:grid-cols-2 gap-12 items-center w-full">
+                    <!-- Texto -->
+                    <div class="space-y-6">
+                        <h2 class="text-4xl md:text-5xl font-bold text-orange-500">The Problem</h2>
+                        <p class="text-lg md:text-xl text-gray-600 max-w-3xl">
+                            SuperPay's clients need fast, reliable, and real-time access to their business data in order
+                            to
+                            make informed decisions.
+                        </p>
+                    </div>
+
+                    <!-- Imagen -->
+                    <div class="w-full flex justify-center">
+                        <div
+                            class="w-full max-w-xl aspect-video bg-gradient-to-br from-orange-100 to-orange-200 rounded-2xl shadow-xl flex items-center justify-center">
+                            <!-- INSERTAR IMG -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- BLOQUE 2: Challenges (Segunda pantalla completa) -->
+            <div class="problem-block max-w-6xl mx-auto px-6">
+                <div class="flex flex-col justify-evenly w-full min-h-screen">
+                    <div class="problem-challenges-row">
+                        <!-- Texto a la izquierda - CENTRADO VERTICALMENTE -->
+                        <div class="problem-heading-small">
+                            <h2>However they faced the following challenges:</h2>
+                        </div>
+
+                        <!-- Cards a la derecha -->
+                        <div class="problem-cards-row">
+                            <!-- Card 1 -->
+                            <div class="problem-card orange-card p-8">
+                                <div class="mb-4">
+                                    <div
+                                        class="w-12 h-12 bg-orange-500 rounded-lg flex items-center justify-center mb-4">
+                                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor"
+                                            viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                        </svg>
+                                    </div>
+                                    <h3 class="text-2xl font-bold text-gray-800 mb-4">Time Waste</h3>
+                                </div>
+                                <p class="text-gray-600">
+                                    Accessing real-time data often took longer than necessary, slowing down workflows
+                                    and
+                                    impacting the overall user experience.
+                                </p>
+                            </div>
+
+                            <!-- Card 2 -->
+                            <div class="problem-card orange-card p-8">
+                                <div class="mb-4">
+                                    <div
+                                        class="w-12 h-12 bg-orange-500 rounded-lg flex items-center justify-center mb-4">
+                                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor"
+                                            viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z" />
+                                        </svg>
+                                    </div>
+                                    <h3 class="text-2xl font-bold text-gray-800 mb-4">Filters</h3>
+                                </div>
+                                <p class="text-gray-600">
+                                    Data filtering and customization options were limited, preventing clients from
+                                    tailoring
+                                    their views and reports to their specific needs.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-center mt-16">
+                        <button onclick="showSection('solution')" class="btn-primary">
+                            See Our Solution →
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Solution Section -->
+    <section id="solution" class="section min-h-screen solution-bg flex items-center justify-center">
+        <div class="max-w-6xl mx-auto px-6 py-20">
+            <!-- Bloque 1: Our Solution (texto izq. + imagen der.) -->
+            <div class="grid md:grid-cols-2 gap-12 items-center min-h-[80vh]">
+                <!-- Texto -->
+                <div class="space-y-4">
+                    <h2 class="solution-h2 text-4xl md:text-5xl font-bold">Our Solution</h2>
+                    <p class="text-lg md:text-xl text-gray-600 max-w-3xl">
+                        We designed and developed an interactive, real-time dashboard that allows SuperPay’s clients to
+                        view and analyze their key data in seconds.
+                    </p>
+                </div>
+
+                <!-- Imagen -->
+                <div class="w-full flex justify-center">
+                    <!-- Reemplaza el placeholder por tu imagen -->
+                    <!-- <img src="/ruta/a/tu-imagen.png" alt="Dashboard preview" class="w-full max-w-xl rounded-2xl shadow-xl"> -->
+                    <div class="img-solution w-full max-w-xl aspect-video rounded-2xl shadow-xl"></div>
+                </div>
+            </div>
+
+            <!-- Bloque 2: Key Features -->
+            <div class="mt-20">
+                <h3 class="key-features-h3 text-3xl md:text-4xl font-bold text-center mb-10">Key Features</h3>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <!-- 1) Dynamic Filters -->
+                    <div class="key-feature-card p-8 rounded-2xl shadow-lg h-full">
+                        <h3 class="text-2xl font-bold text-gray-800 mb-4">Dynamic Filters</h3>
+                        <p class="text-gray-600">
+                            Terminal, payment method, transaction status, and date range.
+                        </p>
+                    </div>
+
+                    <!-- 2) Clear Visualizations -->
+                    <div class="key-feature-card p-8 rounded-2xl shadow-lg h-full">
+                        <h3 class="text-2xl font-bold text-gray-800 mb-4">Clear Visualizations</h3>
+                        <ul class="text-gray-600 list-disc pl-5 space-y-1">
+                            <li>Pie charts showing distribution by status.</li>
+                            <li>Bar & line charts tracking daily amounts.</li>
+                            <li>Revenue flow indicators by status.</li>
+                        </ul>
+                    </div>
+
+                    <!-- 3) Responsive Design -->
+                    <div class="key-feature-card p-8 rounded-2xl shadow-lg h-full">
+                        <h3 class="text-2xl font-bold text-gray-800 mb-4">Responsive Design</h3>
+                        <p class="text-gray-600">
+                            Works seamlessly across desktop, tablet, and mobile.
+                        </p>
+                    </div>
+
+                    <!-- 4) Intuitive UI -->
+                    <div class="key-feature-card p-8 rounded-2xl shadow-lg h-full">
+                        <h3 class="text-2xl font-bold text-gray-800 mb-4">Intuitive UI</h3>
+                        <p class="text-gray-600">
+                            Simple to use, even for non-technical users.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bloque 3: Impact -->
+            <div class="mt-20">
+                <h3 class="impact-h3 text-3xl md:text-4xl font-bold text-center mb-10">Impact</h3>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <!-- Card 1 -->
+                    <div class="impact-card-gradient bg-white p-8 rounded-2xl h-full">
+                        <h3 class="text-2xl font-bold text-gray-800 mb-4">For SuperPay’s clients</h3>
+                        <ul class="text-gray-600 list-disc pl-5 space-y-1">
+                            <li>Understand business trends instantly.</li>
+                            <li>Identify issues quickly (e.g., high failure rates for a payment method).</li>
+                            <li>Make smarter business decisions based on real, up-to-the-minute data.</li>
+                        </ul>
+                    </div>
+
+                    <!-- Card 2 -->
+                    <div class="impact-card-gradient bg-white p-8 rounded-2xl h-full">
+                        <h3 class="text-2xl font-bold text-gray-800 mb-4">For SuperPay</h3>
+                        <ul class="text-gray-600 list-disc pl-5 space-y-1">
+                            <li>More satisfied, self-sufficient clients.</li>
+                            <li>A strong foundation for future back-office modules.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CTA -->
+            <div class="text-center mt-16">
+                <button onclick="showSection('team')" class="btn-primary">
+                    Meet Our Team →
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section id="team" class="section min-h-screen team-bg text-white flex items-center justify-center hidden relative">
+        <div class="max-w-6xl mx-auto px-6 py-20 relative z-10">
+            <div class="text-center mb-16 fade-in">
+                <h2 class="text-4xl md:text-5xl font-bold mb-6">Our Team</h2>
+                <p class="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto">
+                    We combined design and development efforts to deliver a dashboard that transforms complex data into
+                    clear, actionable insights, maximizing the value SuperPay provides to its clients.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8 mb-16">
+                <div class="team-card p-8 rounded-xl text-center">
+                    <div
+                        class="team-avatar w-24 h-24 rounded-full mx-auto mb-6 flex items-center justify-center text-2xl font-bold">
+                        MP
+                    </div>
+                    <h3 class="text-2xl font-bold mb-2">Maria Fernanda Peña</h3>
+                    <p class="text-yellow-400 mb-4 font-semibold">Front-end</p>
+                    <p class="text-gray-300">Datos</p>
+                </div>
+
+                <div class="team-card p-8 rounded-xl text-center">
+                    <div
+                        class="team-avatar w-24 h-24 rounded-full mx-auto mb-6 flex items-center justify-center text-2xl font-bold">
+                        JA
+                    </div>
+                    <h3 class="text-2xl font-bold mb-2">Juan Aramburo</h3>
+                    <p class="text-blue-400 mb-4 font-semibold">Front-end</p>
+                    <p class="text-gray-300">Datos</p>
+                </div>
+
+                <div class="team-card p-8 rounded-xl text-center">
+                    <div
+                        class="team-avatar w-24 h-24 rounded-full mx-auto mb-6 flex items-center justify-center text-2xl font-bold">
+                        CS
+                    </div>
+                    <h3 class="text-2xl font-bold mb-2">Carlos Suarez</h3>
+                    <p class="text-purple-400 mb-4 font-semibold">Front-end</p>
+                    <p class="text-gray-300">Datos</p>
+                </div>
+            </div>
+
+            <div class="text-center fade-in">
+                <h3 class="text-3xl font-bold mb-8">Ready to Transform Your Workflow?</h3>
+                <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4">
+                    <button onclick="showSection('hook')" class="btn-secondary">
+                        Start Over
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="./chart.js" defer></script>
+    <script src="./index.js" defer></script>
+</body>
+
+</html>
